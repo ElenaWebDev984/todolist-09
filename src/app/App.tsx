@@ -23,8 +23,8 @@ import Switch from '@mui/material/Switch'
 import CssBaseline from '@mui/material/CssBaseline'
 import {containerSx} from '../TodolistItem.styles.ts'
 import {NavButton} from '../NavButton.ts'
-import {useDispatch} from "react-redux";
 import {useAppSelector} from "../common/hooks/useAppSelector.ts";
+import {useAppDispatch} from "../common/hooks/useAppDispatch.ts";
 
 
 
@@ -50,7 +50,7 @@ export const App = () => {
   const todolists = useAppSelector((state) => state.todolists)
   const tasks = useAppSelector((state) => state.tasks)
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const [themeMode, setThemeMode] = useState<ThemeMode>('light')
 
