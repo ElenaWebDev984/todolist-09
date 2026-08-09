@@ -8,6 +8,18 @@ const rootReducer = combineReducers({
     todolists: todolistsReducer, // []
 })
 
+// const state = {
+//     tasks: {},
+//     todolists: []
+// }
+
+// const store = {
+//     state,
+//     dispatch() {}, // изменять данные
+//     subscribe() {}, // подписываться на данные
+//     getState() {} // доставать данные
+// }
+
 // создание store
 export const store = configureStore({
     reducer: rootReducer,
