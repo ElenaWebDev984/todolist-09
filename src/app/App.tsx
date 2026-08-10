@@ -2,14 +2,12 @@ import './App.css'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
 import {useState} from 'react'
 import {CreateItemForm} from '../CreateItemForm.tsx'
-import {
-  changeTaskStatusAC,
-  changeTaskTitleAC,
-  createTaskAC, deleteTaskAC
-} from '../model/tasks-reducer.ts'
+import {changeTaskStatusAC, changeTaskTitleAC, createTaskAC, deleteTaskAC} from '../model/tasks-reducer.ts'
 import {
   changeTodolistFilterAC,
-  changeTodolistTitleAC, createTodolistAC, deleteTodolistAC
+  changeTodolistTitleAC,
+  createTodolistAC,
+  deleteTodolistAC
 } from '../model/todolists-reducer.ts'
 import {TodolistItem} from '../TodolistItem.tsx'
 import AppBar from '@mui/material/AppBar'
@@ -25,7 +23,8 @@ import {containerSx} from '../TodolistItem.styles.ts'
 import {NavButton} from '../NavButton.ts'
 import {useAppSelector} from "../common/hooks/useAppSelector.ts";
 import {useAppDispatch} from "../common/hooks/useAppDispatch.ts";
-
+import {selectTodolists} from "../model/todolists-selectors.ts";
+import {selectTasks} from "../model/tasks-selectors.ts";
 
 
 export type Todolist = {
@@ -47,8 +46,8 @@ export type TasksState = Record<string, Task[]>
 type ThemeMode = 'dark' | 'light'
 
 export const App = () => {
-  const todolists = useAppSelector((state) => state.todolists)
-  const tasks = useAppSelector((state) => state.tasks)
+  const todolists = useAppSelector(selectTodolists)
+  const tasks = useAppSelector(selectTasks)
 
   const dispatch = useAppDispatch()
 
