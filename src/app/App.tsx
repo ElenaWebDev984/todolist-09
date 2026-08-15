@@ -1,6 +1,5 @@
 import './App.css'
 import {createTheme, ThemeProvider} from '@mui/material/styles'
-import {useState} from 'react'
 import {CreateItemForm} from '../CreateItemForm.tsx'
 import {changeTaskStatusAC, changeTaskTitleAC, createTaskAC, deleteTaskAC} from '../model/tasks-reducer.ts'
 import {
@@ -25,6 +24,8 @@ import {useAppSelector} from "../common/hooks/useAppSelector.ts";
 import {useAppDispatch} from "../common/hooks/useAppDispatch.ts";
 import {selectTodolists} from "../model/todolists-selectors.ts";
 import {selectTasks} from "../model/tasks-selectors.ts";
+import {selectThemeMode} from "./app-selectors.ts";
+import {changeThemeModeAC} from "./app-reducer.ts";
 
 
 export type Todolist = {
@@ -46,6 +47,7 @@ export type TasksState = Record<string, Task[]>
 export const App = () => {
   const todolists = useAppSelector(selectTodolists)
   const tasks = useAppSelector(selectTasks)
+  const themeMode = useAppSelector(selectThemeMode)
 
   const dispatch = useAppDispatch()
 
@@ -59,7 +61,7 @@ export const App = () => {
   })
 
   const changeMode = () => {
-    setThemeMode(themeMode === 'light' ? 'dark' : 'light')
+    dispatch(changeThemeModeAC({themeMode: themeMode === 'light' ? 'dark' : 'light'}))
   }
 
   const changeFilter = (todolistId: string, filter: FilterValues) => {
