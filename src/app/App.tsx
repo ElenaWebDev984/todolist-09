@@ -43,15 +43,11 @@ export type FilterValues = 'all' | 'active' | 'completed'
 
 export type TasksState = Record<string, Task[]>
 
-type ThemeMode = 'dark' | 'light'
-
 export const App = () => {
   const todolists = useAppSelector(selectTodolists)
   const tasks = useAppSelector(selectTasks)
 
   const dispatch = useAppDispatch()
-
-  const [themeMode, setThemeMode] = useState<ThemeMode>('light')
 
   const theme = createTheme({
     palette: {
