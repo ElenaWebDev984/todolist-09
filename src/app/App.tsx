@@ -1,14 +1,14 @@
 import './App.css'
-import {createTheme, ThemeProvider} from '@mui/material/styles'
-import {CreateItemForm} from '../CreateItemForm.tsx'
-import {changeTaskStatusAC, changeTaskTitleAC, createTaskAC, deleteTaskAC} from '../model/tasks-reducer.ts'
+import {ThemeProvider} from '@mui/material/styles'
+import {CreateItemForm} from '@/CreateItemForm.tsx'
+import {changeTaskStatusAC, changeTaskTitleAC, createTaskAC, deleteTaskAC} from '@/model/tasks-reducer.ts'
 import {
   changeTodolistFilterAC,
   changeTodolistTitleAC,
   createTodolistAC,
   deleteTodolistAC
-} from '../model/todolists-reducer.ts'
-import {TodolistItem} from '../TodolistItem.tsx'
+} from '@/model/todolists-reducer.ts'
+import {TodolistItem} from '@/TodolistItem.tsx'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
@@ -18,14 +18,15 @@ import Grid from '@mui/material/Grid2'
 import Paper from '@mui/material/Paper'
 import Switch from '@mui/material/Switch'
 import CssBaseline from '@mui/material/CssBaseline'
-import {containerSx} from '../TodolistItem.styles.ts'
-import {NavButton} from '../NavButton.ts'
-import {useAppSelector} from "../common/hooks/useAppSelector.ts";
-import {useAppDispatch} from "../common/hooks/useAppDispatch.ts";
-import {selectTodolists} from "../model/todolists-selectors.ts";
-import {selectTasks} from "../model/tasks-selectors.ts";
+import {containerSx} from '@/TodolistItem.styles.ts'
+import {NavButton} from '@/NavButton.ts'
+import {useAppSelector} from "@/common/hooks/useAppSelector.ts";
+import {useAppDispatch} from "@/common/hooks/useAppDispatch.ts";
+import {selectTodolists} from "@/model/todolists-selectors.ts";
+import {selectTasks} from "@/model/tasks-selectors.ts";
 import {selectThemeMode} from "./app-selectors.ts";
 import {changeThemeModeAC} from "./app-reducer.ts";
+import {getTheme} from "@/common/theme/theme.ts";
 
 
 export type Todolist = {
@@ -51,14 +52,7 @@ export const App = () => {
 
   const dispatch = useAppDispatch()
 
-  const theme = createTheme({
-    palette: {
-      mode: themeMode,
-      primary: {
-        main: '#087EA4',
-      },
-    },
-  })
+  const theme = getTheme(themeMode)
 
   const changeMode = () => {
     dispatch(changeThemeModeAC({themeMode: themeMode === 'light' ? 'dark' : 'light'}))
